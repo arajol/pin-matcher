@@ -43,7 +43,7 @@
                             </div>
                             <div>
                                 <button type="submit" class="submit-btn" id="sb">Submit</button>
-                                <p class="action-left">3 try left</p>
+                                <p class="try-left"><span id="try-left" style="display: none;">3 try left</span></p>
                             </div>
                     </div>
                 </div>
@@ -113,10 +113,19 @@
                 document.getElementById("match").style.display = "block";
                 document.getElementById("no-match").style.display = "none";
                 document.getElementById("button-click-input").value = "";
+                
             } else {
                 document.getElementById("no-match").style.display = "block";
                 document.getElementById("match").style.display = "none";
                 document.getElementById("button-click-input").value = "";
+                let totalTry = document.getElementById("try-left");
+                document.getElementById("try-left").style.display = "block";
+                tryLeft = document.getElementById("try-left").innerText = (parseFloat(totalTry.innerText) - 1) 
+                document.getElementById("try-left").innerText = tryLeft + " try left"
+                if (tryLeft == "0") {
+                    document.getElementById("sb").style.display = "none";
+                    document.getElementsByClassName("try-left")[0].innerHTML = "<p>No more tries left, reload the page to try again</p>"
+                }
             }
         })
     </script>
